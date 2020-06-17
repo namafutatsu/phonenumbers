@@ -2,7 +2,9 @@
 
 function parsePhoneNumbers (rawValues) {
   const numbers = rawValues.map(v => libphonenumber.parsePhoneNumberFromString(v, 'FR'))
-  const values = numbers.filter(n => n.isValid() && n.getType() === 'MOBILE').map(n => n.nationalNumber)
+  const values = numbers.filter(n => {
+    return n && n.isValid() && n.getType() === 'MOBILE'
+  }).map(n => n.nationalNumber)
   return values.map(v => `33${v}`)
 }
 
