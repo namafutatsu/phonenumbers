@@ -1,7 +1,7 @@
 /* global FileReader, XLSX, libphonenumber */
 
 function parsePhoneNumbers (rawValues) {
-  const numbers = rawValues.map(v => libphonenumber.parsePhoneNumberFromString(v, 'FR'))
+  const numbers = rawValues.map(v => libphonenumber.parsePhoneNumberFromString('' + v, 'FR'))
   const values = numbers.filter(n => {
     return n && n.isValid() && n.getType() === 'MOBILE' && n.country === 'FR'
   }).map(n => n.nationalNumber)
